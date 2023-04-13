@@ -13,6 +13,21 @@ exports.getAllEvents = async (req, res) => {
     })
 }
 
+exports.getTrendemousEvents = async (req, res) => {
+    const sql = `SELECT * 
+    FROM event 
+    WHERE isTrendemous = true`
+
+    appDb.db.query(sql, (err, result) => {
+        if (err){
+            console.log(`Erreur requête : ${err}`)
+            res.status(500).send({error: 'Error : Internal Server Error'})
+        }else{
+            res.status(200).send(result)
+        }
+    })
+}
+
 exports.getSingleEventFromId = async (req, res) => {
     const sql = `SELECT * 
     FROM event

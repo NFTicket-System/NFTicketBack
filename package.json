@@ -4,7 +4,8 @@
   "description": "NFTTicket api",
   "main": "server.js",
   "scripts": {
-    "test": "none"
+    "test": "none",
+    "start": "node src/server.js"
   },
   "repository": {
     "type": "git",

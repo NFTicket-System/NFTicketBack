@@ -5,5 +5,6 @@ router.get('/all', eventController.getAllEvents)
 router.get('/single/:id', eventController.getSingleEventFromId)
 router.get('/all/byCat/:id', eventController.getAllEventsFromCat)
 router.get('/all/byCity/:id', eventController.getAllEventsFromCity)
+router.get('/all/trendemous', eventController.getTrendemousEvents)
 
 module.exports = router
