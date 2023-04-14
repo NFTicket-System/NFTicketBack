@@ -4,25 +4,38 @@ exports.getAllEvents = async (req, res) => {
     const sql = 'SELECT * FROM event'
 
     appDb.db.query(sql, (err, result) => {
-        if (err){
+        if (err) {
             console.log(`Erreur requête : ${err}`)
-            res.status(500).send({error: 'Error : Internal Server Error'})
-        }else{
+            res.status(500).send({ error: 'Error : Internal Server Error' })
+        } else {
             res.status(200).send(result)
         }
     })
 }
 
-exports.getTrendemousEvents = async (req, res) => {
-    const sql = `SELECT * 
+exports.getAllLightEvents = async (req, res) => {
+    const sql = 'SELECT id, urlImage, libelle FROM event'
+
+    appDb.db.query(sql, (err, result) => {
+        if (err) {
+            console.log(`Erreur requête : ${err}`)
+            res.status(500).send({ error: 'Error : Internal Server Error' })
+        } else {
+            res.status(200).send(result)
+        }
+    })
+}
+
+exports.getAllTrendemousLightEvents = async (req, res) => {
+    const sql = `SELECT id, urlImage, libelle 
     FROM event 
     WHERE isTrendemous = true`
 
     appDb.db.query(sql, (err, result) => {
-        if (err){
+        if (err) {
             console.log(`Erreur requête : ${err}`)
-            res.status(500).send({error: 'Error : Internal Server Error'})
-        }else{
+            res.status(500).send({ error: 'Error : Internal Server Error' })
+        } else {
             res.status(200).send(result)
         }
     })
@@ -34,40 +47,46 @@ exports.getSingleEventFromId = async (req, res) => {
     WHERE id = '${req.params.id}'`
 
     appDb.db.query(sql, (err, result) => {
-        if (err){
+        if (err) {
             console.log(`Erreur requête : ${err}`)
-            res.status(500).send({error: 'Error : Internal Server Error'})
-        }else{
+            res.status(500).send({ error: 'Error : Internal Server Error' })
+        } else {
             res.status(200).send(result)
         }
     })
 }
 
-exports.getAllEventsFromCat = async (req, res) => {
-    const sql = `SELECT * 
+exports.getAllLightEventsFromCat = async (req, res) => {
+    const sql = `SELECT id, urlImage, libelle 
     FROM event
-    WHERE idCategory = '${req.params.id}'`
+    WHERE id = (
+        SELECT idEvent
+        FROM groupe_category
+        WHERE idCategory = (
+            SELECT id
+            FROM category
+            WHERE libelle = '${req.params.libelle}'))`
 
     appDb.db.query(sql, (err, result) => {
-        if (err){
+        if (err) {
             console.log(`Erreur requête : ${err}`)
-            res.status(500).send({error: 'Error : Internal Server Error'})
-        }else{
+            res.status(500).send({ error: 'Error : Internal Server Error' })
+        } else {
             res.status(200).send(result)
         }
     })
 }
 
-exports.getAllEventsFromCity = async (req, res) => {
-    const sql = `SELECT * 
+exports.getAllLightEventsFromCity = async (req, res) => {
+    const sql = `SELECT id, urlImage, libelle 
     FROM event
     WHERE idCity = '${req.params.id}'`
 
     appDb.db.query(sql, (err, result) => {
-        if (err){
+        if (err) {
             console.log(`Erreur requête : ${err}`)
-            res.status(500).send({error: 'Error : Internal Server Error'})
-        }else{
+            res.status(500).send({ error: 'Error : Internal Server Error' })
+        } else {
             res.status(200).send(result)
         }
     })

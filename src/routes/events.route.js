@@ -2,9 +2,10 @@ const router = require('express').Router()
 const eventController = require('./../controllers/events.controller')
 
 router.get('/all', eventController.getAllEvents)
+router.get('/all/light', eventController.getAllLightEvents)
+router.get('/all/light/byCat/:libelle', eventController.getAllLightEventsFromCat)
+router.get('/all/light/byCity/:id', eventController.getAllLightEventsFromCity)
+router.get('/all/light/trendemous', eventController.getAllTrendemousLightEvents)
 router.get('/single/:id', eventController.getSingleEventFromId)
-router.get('/all/byCat/:id', eventController.getAllEventsFromCat)
-router.get('/all/byCity/:id', eventController.getAllEventsFromCity)
-router.get('/all/trendemous', eventController.getTrendemousEvents)
 
 module.exports = router
