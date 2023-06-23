@@ -58,29 +58,30 @@ exports.getSingleEventFromId = async (req, res) => {
         const eventResponse = {
           id: result[0].id,
           libelle: result[0].libelle,
-          idCity: result[0].idCity,
           timestampStart: result[0].timestampStart,
           timestampEnd: result[0].timestampEnd,
           idOrganizer: result[0].idOrganizer,
           timestampCreation: result[0].timestampCreation,
           isTrendemous: result[0].isTrendemous,
           urlImage: result[0].urlImage,
+          city: result[0].city,
+          address: result[0].address,
           tickets: [],
         };
-        console.log(eventResponse)
+        console.log(eventResponse);
 
         result.forEach((row) => {
-            const ticket = {
-                id: row.ticket_id,
-                addressContract: row.addressContract,
-                prix: row.prix,
-                type: row.type,
-                date: row.date,
-                solded: row.solded
-            }
+          const ticket = {
+            id: row.ticket_id,
+            addressContract: row.addressContract,
+            prix: row.prix,
+            type: row.type,
+            date: row.date,
+            solded: row.solded,
+          };
 
-            eventResponse.tickets.push(ticket)
-        })
+          eventResponse.tickets.push(ticket);
+        });
         res.status(200).send(eventResponse);
       }
     }
