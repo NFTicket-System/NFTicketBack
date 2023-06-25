@@ -7,5 +7,6 @@ router.get('/all/light/byCat/:libelle', eventController.getAllLightEventsFromCat
 router.get('/all/light/byCity/:id', eventController.getAllLightEventsFromCity)
 router.get('/all/light/trendemous', eventController.getAllTrendemousLightEvents)
 router.get('/single/:id', eventController.getSingleEventFromId)
+router.get('/all/categoty/event/:id', eventController.getAllCategoriesEvent)
 
 module.exports = router
