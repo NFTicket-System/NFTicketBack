@@ -6,6 +6,7 @@ const helmet = require('helmet')
 const morgan = require('morgan')
 const dotenv = require('dotenv')
 const eventRouter = require('./routes/events.route')
+const ticketRouter = require('./routes/tickets.route')
 const mysql = require('mysql')
 
 dotenv.config()
@@ -30,7 +31,9 @@ app.use(cors())
 // adding morgan to log HTTP requests
 app.use(morgan('combined'))
 
-app.use("/api/events", eventRouter)
+app.use("/api/event", eventRouter)
+
+app.use("/api/tickets", ticketRouter)
 
 connection.connect(function(err) {
     if (err) throw err
