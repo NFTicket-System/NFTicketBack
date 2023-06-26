@@ -31,7 +31,7 @@ app.use(cors())
 // adding morgan to log HTTP requests
 app.use(morgan('combined'))
 
-app.use("/api/event", eventRouter)
+app.use("/api/events", eventRouter)
 
 app.use("/api/tickets", ticketRouter)
 
