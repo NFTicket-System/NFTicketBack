@@ -188,19 +188,37 @@ exports.addEvent = async (req, res) => {
 };
 
 exports.addTicket = async (req, res) => {
-  const tickets = req.body
+	const tickets = req.body;
 
-  tickets.forEach(ticket => {
-    const sql = `INSERT INTO ticket(addressContract, idEvent, prix, type, date, solded)
+	tickets.forEach((ticket) => {
+		const sql = `INSERT INTO ticket (addressContract, idEvent, prix, type, date, solded)
     VALUES ('${ticket.addressContract}', '${ticket.idEvent}', '${ticket.prix}', '${ticket.type}', '${ticket.date}', '${ticket.solded}')`;
 
-    appDb.db.query(sql, (err, result) => {
-      if (err) {
-        console.log(`Erreur requête : ${err}`);
-        res.status(500).send({ error: "Error : Internal Server Error" });
-      } else {
-        res.status(200).send(result);
-      }
-    });
-  });
+		appDb.db.query(sql, (err, result) => {
+			if (err) {
+				console.log(`Erreur requête : ${err}`);
+				res.status(500).send({ error: "Error : Internal Server Error" });
+			}
+		});
+	});
+  res.status(200).send({message: "tickets créés"})
+};
+
+exports.addCategoriesToEvent = async (req, res) => {
+	const eventId = req.body.id;
+	const categories = req.body.categories;
+
+	categories.forEach((category) => {
+		const sql = `INSERT INTO groupe_category (idEvent, idCategory)
+    VALUES ('${eventId}', '${category}')`;
+
+		appDb.db.query(sql, (err, result) => {
+			if (err) {
+        console.log("fsfziugflizqugfiqzuvfzvFEHZVCYzevc");
+				console.log(`Erreur requête : ${err}`);
+				res.status(500).send({ error: "Error : Internal Server Error" });
+			}
+		});
+	});
+  res.status(200).send({message: "categories créées"})
 };

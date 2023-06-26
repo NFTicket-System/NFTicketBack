@@ -12,5 +12,6 @@ router.get('/all/category', eventController.getAllCategories)
 
 router.post('/', eventController.addEvent)
 router.post('/ticket', eventController.addTicket)
+router.post('/categories', eventController.addCategoriesToEvent)
 
 module.exports = router
