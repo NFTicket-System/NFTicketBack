@@ -182,11 +182,9 @@ exports.addEvent = async (req, res) => {
 			console.log(`Erreur requête : ${err}`);
 			res.status(500).send({ error: "Error : Internal Server Error" });
 		} else {
-			res.status(201).send({ mesage: "Event created" });
+			res.status(200).send(result);
 		}
 	});
 };
 
-exports.addTicket = async () => {
-
-} 
+exports.addTicket = async () => {};
