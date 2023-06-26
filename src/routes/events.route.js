@@ -10,7 +10,7 @@ router.get('/single/:id', eventController.getSingleEventFromId)
 router.get('/all/categoty/event/:id', eventController.getAllCategoriesEvent)
 router.get('/all/category', eventController.getAllCategories)
 
-router.put('/', eventController.addEvent)
-router.put('/ticket', eventController.addTicket)
+router.post('/', eventController.addEvent)
+router.post('/ticket', eventController.addTicket)
 
 module.exports = router

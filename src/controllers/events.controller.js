@@ -177,7 +177,6 @@ exports.addEvent = async (req, res) => {
 	const sql = `INSERT INTO event(libelle, timestampStart, timestampEnd, idOrganizer, isTrendemous, urlImage, city, address)
     VALUES ('${libelle}', '${timestampStart}', '${timestampEnd}', '${idOrganizer}', '${isTrendemous}', '${urlImage}', '${city}', '${address}')`;
 
-	// Insert new event
 	appDb.db.query(sql, (err, result) => {
 		if (err) {
 			console.log(`Erreur requête : ${err}`);
