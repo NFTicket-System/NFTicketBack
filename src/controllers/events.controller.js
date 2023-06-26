@@ -68,7 +68,6 @@ exports.getSingleEventFromId = async (req, res) => {
           address: result[0].address,
           tickets: [],
         };
-        console.log(eventResponse);
 
         result.forEach((row) => {
           const ticket = {
@@ -132,6 +131,24 @@ exports.getAllCategoriesEvent = async (req, res) => {
         FROM groupe_category
         WHERE idEvent = '${req.params.id}'
     )`;
+
+  appDb.db.query(sql, (err, result) => {
+    if (err) {
+      console.log(`Erreur requête : ${err}`);
+      res.status(500).send({ error: "Error : Internal Server Error" });
+    } else {
+      if (result.length === 0) {
+        res.status(404).send({ error: "Element introuvable" });
+      } else {
+        res.status(200).send(result);
+      }
+    }
+  });
+};
+
+exports.getAllCategories = async (req, res) => {
+  const sql = `SELECT *
+    FROM category`;
 
   appDb.db.query(sql, (err, result) => {
     if (err) {

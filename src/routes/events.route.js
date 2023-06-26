@@ -8,5 +8,8 @@ router.get('/all/light/byCity/:id', eventController.getAllLightEventsFromCity)
 router.get('/all/light/trendemous', eventController.getAllTrendemousLightEvents)
 router.get('/single/:id', eventController.getSingleEventFromId)
 router.get('/all/categoty/event/:id', eventController.getAllCategoriesEvent)
+router.get('/all/category', eventController.getAllCategories)
+
+//router.put('/')
 
 module.exports = router
