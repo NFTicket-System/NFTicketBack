@@ -90,7 +90,7 @@ exports.getSingleEventFromId = async (req, res) => {
 exports.getAllLightEventsFromCat = async (req, res) => {
 	const sql = `SELECT id, urlImage, libelle 
     FROM event
-    WHERE id = (
+    WHERE id IN (
         SELECT idEvent
         FROM groupe_category
         WHERE idCategory = (
