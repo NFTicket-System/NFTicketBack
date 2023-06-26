@@ -187,4 +187,20 @@ exports.addEvent = async (req, res) => {
 	});
 };
 
-exports.addTicket = async () => {};
+exports.addTicket = async (req, res) => {
+  const tickets = req.body
+
+  tickets.forEach(ticket => {
+    const sql = `INSERT INTO ticket(addressContract, idEvent, prix, type, date, solded)
+    VALUES ('${ticket.addressContract}', '${ticket.idEvent}', '${ticket.prix}', '${ticket.type}', '${ticket.date}', '${ticket.solded}')`;
+
+    appDb.db.query(sql, (err, result) => {
+      if (err) {
+        console.log(`Erreur requête : ${err}`);
+        res.status(500).send({ error: "Error : Internal Server Error" });
+      } else {
+        res.status(200).send(result);
+      }
+    });
+  });
+};
