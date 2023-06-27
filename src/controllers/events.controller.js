@@ -42,7 +42,7 @@ exports.getAllTrendemousLightEvents = async (req, res) => {
 };
 
 exports.getSingleEventFromId = async (req, res) => {
-	const sql = `SELECT e.*, t.id AS ticket_id, t.addressContract, t.prix, t.type, t.date, t.solded, t.tokenId
+	const sql = `SELECT e.*, t.id AS ticket_id, t.addressContract, t.prix, t.type, t.date, t.solded
     FROM event e JOIN ticket t ON e.id = t.idEvent
     WHERE e.id = '${req.params.id}'
     AND t.solded = false`;
@@ -76,8 +76,7 @@ exports.getSingleEventFromId = async (req, res) => {
 						prix: row.prix,
 						type: row.type,
 						date: row.date,
-						solded: row.solded,
-            tokenId: row.tokenId
+						solded: row.solded
 					};
 
 					eventResponse.tickets.push(ticket);
@@ -192,8 +191,8 @@ exports.addTicket = async (req, res) => {
 	const tickets = req.body;
 
 	tickets.forEach((ticket) => {
-		const sql = `INSERT INTO ticket (addressContract, idEvent, prix, type, date, solded, tokenId)
-    VALUES ('${ticket.addressContract}', '${ticket.idEvent}', '${ticket.prix}', '${ticket.type}', '${ticket.date}', '${ticket.solded}', '${ticket.tokenId}')`;
+		const sql = `INSERT INTO ticket (addressContract, idEvent, prix, type, date, solded)
+    VALUES ('${ticket.addressContract}', '${ticket.idEvent}', '${ticket.prix}', '${ticket.type}', '${ticket.date}', '${ticket.solded}')`;
 
 		appDb.db.query(sql, (err, result) => {
 			if (err) {
