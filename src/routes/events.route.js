@@ -7,6 +7,7 @@ router.get('/all/light/byCat/:libelle', eventController.getAllLightEventsFromCat
 router.get('/all/light/byCity/:id', eventController.getAllLightEventsFromCity)
 router.get('/all/light/trendemous', eventController.getAllTrendemousLightEvents)
 router.get('/single/:id', eventController.getSingleEventFromId)
+router.get('/single/location/:id', eventController.getSingleEventLocationFromLibelle)
 router.get('/all/categoty/event/:id', eventController.getAllCategoriesEvent)
 router.get('/all/category', eventController.getAllCategories)
 

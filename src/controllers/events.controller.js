@@ -87,6 +87,21 @@ exports.getSingleEventFromId = async (req, res) => {
 	});
 };
 
+exports.getSingleEventLocationFromLibelle = async (req, res) => {
+	const sql = `SELECT city, address
+	FROM event
+	WHERE libelle = '${req.params.libelle}'`
+
+	appDb.db.query(sql, (err, result) => {
+		if (err) {
+			console.log(`Erreur requête : ${err}`);
+			res.status(500).send({ error: "Error : Internal Server Error" });
+		} else {
+			res.status(200).send(result);
+		}
+	});
+}
+
 exports.getAllLightEventsFromCat = async (req, res) => {
 	const sql = `SELECT id, urlImage, libelle 
     FROM event
