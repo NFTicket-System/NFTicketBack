@@ -15,4 +15,6 @@ router.post('/', eventController.addEvent)
 router.post('/ticket', eventController.addTicket)
 router.post('/categories', eventController.addCategoriesToEvent)
 
+router.put('/isUsed', eventController.getEventIsUsed)
+
 module.exports = router
