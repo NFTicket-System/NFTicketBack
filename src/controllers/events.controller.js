@@ -237,10 +237,8 @@ exports.addEvent = async (req, res) => {
     const city = req.body.city;
     const address = req.body.address;
 
-    const sql = `INSERT INTO event(libelle, timestampStart, timestampEnd, idOrganizer, isTrendemous, urlImage, city,
-                                   address)
-                 VALUES ('${libelle}', '${timestampStart}', '${timestampEnd}', '${idOrganizer}', '${isTrendemous}',
-                         '${urlImage}', '${city}', '${address}')`;
+    const sql = `INSERT INTO event(libelle, timestampStart, timestampEnd, idOrganizer, isTrendemous, urlImage, city, address)
+                 VALUES ('${libelle}', '${timestampStart}', '${timestampEnd}', '${idOrganizer}', '${isTrendemous}', '${urlImage}', '${city}', '${address}')`;
 
     appDb.db.query(sql, (err, result) => {
         if (err) {
@@ -257,8 +255,7 @@ exports.addTicket = async (req, res) => {
 
     tickets.forEach((ticket) => {
         const sql = `INSERT INTO ticket (addressContract, idEvent, prix, type, date, solded)
-                     VALUES ('${ticket.addressContract}', '${ticket.idEvent}', '${ticket.prix}', '${ticket.type}',
-                             '${ticket.date}', '${ticket.solded}')`;
+                     VALUES ('${ticket.addressContract}', '${ticket.idEvent}', '${ticket.prix}', '${ticket.type}', '${ticket.date}', '${ticket.solded}')`;
 
         appDb.db.query(sql, (err, result) => {
             if (err) {
