@@ -10,6 +10,7 @@ router.get('/single/:id', eventController.getSingleEventFromId)
 router.get('/single/location/:libelle', eventController.getSingleEventLocationFromLibelle)
 router.get('/all/categoty/event/:id', eventController.getAllCategoriesEvent)
 router.get('/all/category', eventController.getAllCategories)
+router.get('/single/category/:libelle', eventController.getSingleCategoryFromLibelle)
 
 router.post('/', eventController.addEvent)
 router.post('/ticket', eventController.addTicket)

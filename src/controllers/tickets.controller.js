@@ -25,3 +25,16 @@ exports.getAllLightTickets = async (req, res) => {
     }
   });
 };
+
+exports.getAllCollectionAddresses = async (req, res) => {
+  const sql = "SELECT DISTINCT addressContract FROM ticket";
+
+  appDb.db.query(sql, (err, result) => {
+    if (err) {
+      console.log(`Erreur requête : ${err}`);
+      res.status(500).send({ error: "Error : Internal Server Error" });
+    } else {
+      res.status(200).send(result);
+    }
+  });
+};

@@ -176,6 +176,25 @@ exports.getAllCategories = async (req, res) => {
     });
 };
 
+exports.getSingleCategoryFromLibelle = async (req, res) => {
+    const sql = `SELECT *
+                 FROM category
+                 WHERE libelle = '${req.params.libelle}'`;
+
+    appDb.db.query(sql, (err, result) => {
+        if (err) {
+            console.log(`Erreur requête : ${err}`);
+            res.status(500).send({error: "Error : Internal Server Error"});
+        } else {
+            if (result.length === 0) {
+                res.status(404).send({error: "Element introuvable"});
+            } else {
+                res.status(200).send(result);
+            }
+        }
+    });
+};
+
 exports.getEventIsUsed = async (req, res) => {
     const sql = `SELECT used
                  FROM ticket
